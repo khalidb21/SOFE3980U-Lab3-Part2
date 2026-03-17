@@ -30,9 +30,18 @@ public class BinaryController {
 			case "+":
 				model.addAttribute("result", Binary.add(number1,number2).getValue());
 				return "result";
+			case "*":
+            model.addAttribute("result", Binary.multiply(number1, number2).getValue());
+            break;
+			case "&":
+				model.addAttribute("result", Binary.bitwiseAND(number1, number2).getValue());
+				break;
+			case "|":
+				model.addAttribute("result", Binary.bitwiseOR(number1, number2).getValue());
+				break;
 			default:
 				return "Error";
 		}
+		return "result";
 	}
-
 }
