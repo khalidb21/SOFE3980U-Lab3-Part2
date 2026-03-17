@@ -27,31 +27,4 @@ public class BinaryAPIController {
 		// http://localhost:8080/add?operand1=111&operand2=1010
 	}
 
-	@GetMapping("/multiply")
-	public String multiplyString(@RequestParam(name="operand1", required=false, defaultValue="") String op1, 
-								@RequestParam(name="operand2", required=false, defaultValue="") String op2) {
-		Binary n1 = new Binary(op1);
-		Binary n2 = new Binary(op2);
-		return Binary.multiply(n1, n2).getValue();
-		// http://localhost:8080/multiply?operand1=10&operand2=11
-	}
-
-	@GetMapping("/and")
-	public String andString(@RequestParam(name="operand1", required=false, defaultValue="") String op1, 
-							@RequestParam(name="operand2", required=false, defaultValue="") String op2) {
-		Binary n1 = new Binary(op1);
-		Binary n2 = new Binary(op2);
-		return Binary.bitwiseAND(n1, n2).getValue();
-		// http://localhost:8080/and?operand1=1010&operand2=1100
-	}
-
-	@GetMapping("/or")
-	public String orString(@RequestParam(name="operand1", required=false, defaultValue="") String op1, 
-						@RequestParam(name="operand2", required=false, defaultValue="") String op2) {
-		Binary n1 = new Binary(op1);
-		Binary n2 = new Binary(op2);
-		return Binary.bitwiseOR(n1, n2).getValue();
-		// http://localhost:8080/or?operand1=1010&operand2=1100
-	}
-
 }

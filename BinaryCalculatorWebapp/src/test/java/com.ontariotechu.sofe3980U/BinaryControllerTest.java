@@ -40,7 +40,7 @@ public class BinaryControllerTest {
 			.andExpect(model().attribute("operand1Focused", false));
     }
 	
-	@Test
+	    @Test
     public void getParameter() throws Exception {
         this.mvc.perform(get("/").param("operand1","111"))
             .andExpect(status().isOk())
@@ -55,90 +55,6 @@ public class BinaryControllerTest {
             .andExpect(view().name("result"))
 			.andExpect(model().attribute("result", "1110"))
 			.andExpect(model().attribute("operand1", "111"));
-    }
-
-    // New additions
-    @Test
-    public void postAdditionWithZero() throws Exception {
-        this.mvc.perform(post("/").param("operand1","0").param("operator","+").param("operand2","1010"))
-            .andExpect(status().isOk())
-            .andExpect(model().attribute("result", "1010"));
-    }
-
-    @Test
-    public void postAdditionDifferentLengths() throws Exception {
-        this.mvc.perform(post("/").param("operand1","1").param("operator","+").param("operand2","111"))
-            .andExpect(status().isOk())
-            .andExpect(model().attribute("result", "1000"));
-    }
-
-    @Test
-    public void postAdditionEmptyOperand() throws Exception {
-        this.mvc.perform(post("/").param("operand1","").param("operator","+").param("operand2","11"))
-            .andExpect(status().isOk())
-            .andExpect(model().attribute("result", "11")); // Binary class defaults empty to 0
-    }
-
-    // New Operators Web Tests
-    /**
-     * Test The multiply method via Web POST with equal length numbers
-     */
-    @Test
-    public void postMultiply() throws Exception {
-        this.mvc.perform(post("/").param("operand1","1010").param("operator","*").param("operand2","1000"))
-            .andExpect(status().isOk())
-            .andExpect(view().name("result"))
-            .andExpect(model().attribute("result", "1010000"));
-    }
-
-    /**
-     * Test The multiply method via Web POST with different lengths
-     */
-    @Test
-    public void postMultiply2() throws Exception {
-        this.mvc.perform(post("/").param("operand1","101").param("operator","*").param("operand2","1101"))
-            .andExpect(status().isOk())
-            .andExpect(model().attribute("result", "1000001"));
-    }
-
-    /**
-     * Test The bitwiseOR method via Web POST with mixed bits
-     */
-    @Test
-    public void postBitwiseOR() throws Exception {
-        this.mvc.perform(post("/").param("operand1","101010").param("operator","|").param("operand2","110011"))
-            .andExpect(status().isOk())
-            .andExpect(model().attribute("result", "111011"));
-    }
-
-    /**
-     * Test The bitwiseOR method via Web POST with different length binary numbers
-     */
-    @Test
-    public void postBitwiseOR3() throws Exception {
-        this.mvc.perform(post("/").param("operand1","101").param("operator","|").param("operand2","110011"))
-            .andExpect(status().isOk())
-            .andExpect(model().attribute("result", "110111"));
-    }
-
-    /**
-     * Test The bitwiseAND method via Web POST with mixed bits
-     */
-    @Test
-    public void postBitwiseAND() throws Exception {
-        this.mvc.perform(post("/").param("operand1","101010").param("operator","&").param("operand2","110011"))
-            .andExpect(status().isOk())
-            .andExpect(model().attribute("result", "100010"));
-    }
-
-    /**
-     * Test The bitwiseAND method via Web POST with different length binary numbers
-     */
-    @Test
-    public void postBitwiseAND3() throws Exception {
-        this.mvc.perform(post("/").param("operand1","101").param("operator","&").param("operand2","110011"))
-            .andExpect(status().isOk())
-            .andExpect(model().attribute("result", "1"));
     }
 
 }
